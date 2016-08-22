@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>chap-2</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    function Lecture(name, teacher) {
+        this.name = name;
+        this.teacher = teacher;
+    }
+    Lecture.prototype.disp = function() {
+        return this.name + ' is teached by ' + this.teacher;
+    }
+
+    function Lectures(lectures) {
+        this.lectures = lectures;
+    }
+    Lectures.prototype.disp = function() {
+        var str = '';
+        for (var i = 0; i < this.lectures.length; i++) {
+            // str = str + this.lectures[i].name+this.lectures[i].teacher;
+            str +=  this.lectures[i].disp()+' \n';
+        };
+        console.log(str);
+        return str;
+    }
+    var lecs = new Lectures([
+        new Lecture('play', 'roc'),
+        new Lecture('lol', 'rockerhoho')
+    ]);
+    lecs.disp();
+    </script>
+</body>
+
+</html>

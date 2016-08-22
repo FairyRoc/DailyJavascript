@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>2016年8月22日11:53:23</title>
+    <style type="text/css">
+    body {
+        background: #69FFC4;
+    }
+    </style>
+    <!-- <script type="text/javascript" src="jquery-1.7.1.js"></script> -->
+</head>
+
+<body>
+    <div id="main">hello jquery-1.7</div>
+    <script type="text/javascript">
+    // 1
+    //without new opertator constructor function will be?
+    // function Person(name,age){
+    // 	this.age=age;
+    // 	this.name=name;
+    // };
+    // var a=Person('roc',22);
+    // console.log(a);
+    // console.log(window.age);
+    // console.log(window.name);
+    // console.clear();
+
+
+
+    // 2
+    // 利用返回对象形式
+    // function Person(name,age){
+    // 	var obj={};
+    // 	obj.age=age;
+    // 	obj.name=name;
+    // 	return obj;
+    // };
+    // var a=Person('roc',22);
+    // console.log(a);
+
+    // 3
+    // 改进第二个函数的写法
+    // new运算符只做了这几件事情：
+    // var obj  = {};
+    // obj.__proto__ = Person.prototype;
+    // Person.call(obj);
+    // 知道了new的工作原理，我们就在构造函数入口处做一个判断
+    // 检测this是否被绑定为调用对象也就是，this指向是否为一个
+    // Person构造的对象，如果是，那么执行该构造函数内容，如果不是，
+    // 那么在内部执行new，让this绑定为new Person对象，同时执行call(obj)
+    // 这样既可
+
+
+
+    // function Person(name, age) {
+    //     if (!(this instanceof Person)) {
+    //         return new Person(name, age); //额外的函数调用
+    //     }
+    //     this.name = name;
+    //     this.age = age;
+    // }
+    // console.log(Person('roc',22));
+
+
+    // Uncaught RangeError: Maximum call stack size exceeded
+    // 不能通过自己调用构造函数，会造成堆栈溢出的。
+    //     function Person(name, age) {
+    //     this.name = name;
+    //     this.age = age;
+    //     return new Person(name, age);
+    // }
+    // console.log(Person('roc',22));
+
+    // 借用构造函数
+
+    // var Parent = function(name) {
+    //     this.name = name || 'parent';
+    // };
+    // Parent.prototype.getName = function() {
+    //     return this.name;
+    // };
+    // Parent.prototype.obj = {
+    //     a: 1
+    // };
+
+    // var Child = function(name) {
+    //     Parent.apply(this, arguments);
+    // };
+    // Child.prototype = new Parent();
+
+    // var parent = new Parent('myParent');
+    // var child = new Child('myChild');
+
+    // console.log(parent.getName()); //myParent
+    // console.log(child.getName()); //myChild
+
+
+    // 由于上面方法太gay了，直接获取了父类自有属性和方法，
+    // 而且多了一次 构造，于是老道又提出这个新的方法
+    // var Parent = function(name) {
+    //     this.name = name || 'parent';
+    // };
+    // Parent.prototype.getName = function() {
+    //     return this.name;
+    // };
+    // Parent.prototype.obj = {
+    //     a: 1
+    // };
+
+    // var Child = function(name) {
+    //     Parent.apply(this, arguments);
+    // };
+    // Child.prototype = Parent.prototype;
+
+    // var parent = new Parent('myParent');
+    // var child = new Child('myChild');
+
+    // console.log(parent.getName()); //myParent
+    // console.log(child.getName()); //myChild
+
+
+    // var a = {
+    //     func: function() {
+    //     	return this;
+    //     },
+    //     abc:'well'
+    // };
+    </script>
+</body>
+
+</html>
